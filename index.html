@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ELENE6883 - Billboard NFTs">
+    <meta name="author" content="Andrei Oprisan">
+    <title>ELENE6883 - Billboard NFTs - Andrei Oprisan</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+  
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <script>
+      var billboardId = null;
+      var resp = null;
+      var img = null;
+      var impressions = null;
+      var name = null;
+      var price = 0;
+      var billboard_nft_smart_contract_id = null;
+      var hasAle = typeof window["aleereum"] !== "undefined";
+      var provider = null;
+
+      function step1() {
+        resp = {"mediaFiles":[{"key":"photo_30478_0.jpeg","url":"https://d3pw1a12ddvjwa.cloudfront.net/img/photo_30478_0.jpeg","name":"30478.jpg","size":1,"type":"image/jpeg","handle":"1","source":"local_file_system","status":"Stored","uploadId":"1"}],"nextAvailableDate":"2022-05-11T23:50:17.628Z","id":"00054298-50c1-474f-a094-c1976ca56b47","latitude":39.275163,"longitude":-76.666822,"name":"Posters","city":null,"state":"MD","zip":"21223","country":"US","timezone":"-5","timezoneName":null,"physicalAddress":"Wilkens Ave","notes":"","importHash":null,"geopathId":30478,"unitNumber":null,"description":"Roadside Sunlit Ambient Poster","facing":"90","position":null,"weeklyAdultImpressionsCount":50666,"uniqueAdultAdReachedCount":27322,"averageAdultFrequencyReach":10.92,"grp":"13923.000000000004","spotLength":null,"loopLength":null,"sov":1,"advertisersCount":null,"fourWeekRateNegotiatedCost":null,"fourWeekRateCardCost":null,"productionCost":null,"installCost":null,"panelSize":"300\" x 144\"","vinylSize":null,"dimensions":"300\" x 144\"","shippingAddress":null,"illuminated":false,"staticImageAd":false,"motionGraphicAd":false,"audioAd":false,"lengthLimit":null,"fileSizeLimitMB":null,"categoryRestrictions":null,"dmaId":512,"syncedAt":"2022-04-06T17:57:13.000Z","createdAt":"2022-01-26T07:26:54.000Z","updatedAt":"2022-01-26T07:26:55.000Z","deletedAt":null,"createdById":null,"updatedById":null,"tags":[],"availability":[],"inventoryTypes":[{"id":"9f9b97cb-7e68-112c-b931-0a5bb4fb9ba7","name":"Poster"}],"gp":{"id":30478,"frame_id":30478,"spot_id":30478,"location_id":36734,"os_import_stage":3,"os_storefront_id":"00054298-50c1-474f-a094-c1976ca56b47","os_partner_id":"081a5d77-b1c9-41d1-82f2-3debb8e97ac6","media_name":"Posters","parent_name":"Clear Channel - Baltimore-Washington","classification_type_name":"Roadside","construction_type_name":"Freestanding","illumination_type_name":"Sunlit Ambient","media_type_name":"Poster","media_status_name":"Published - Measured","placement_type_name":"Set Back","classification_type_id":1,"construction_type_id":1,"illumination_type_id":1,"media_type_id":3,"media_status_id":51,"placement_type_id":538,"representation_type_id":1,"representation_account_id":332,"representation_parent_account_id":1,"plant_frame_id":"067150","max_height":144,"max_width":300,"digital":0,"frame_rotating":0,"frame_full_motion":0,"frame_partial_motion":0,"frame_audio":0,"frame_interactive":0,"illumination_start_time":"06:00:00","illumination_end_time":"17:59:59","partner_child_id":332,"partner_child_name":"Baltimore-Washington","partner_parent_id":1,"partner_parent_name":"Clear Channel","created_dtm":"2005-03-09T00:00:00.000Z","updated_dtm":"2009-12-15T07:10:00.000Z","createdAt":"2022-01-22T10:30:57.000Z","updatedAt":"2022-01-25T21:39:34.000Z","deletedAt":null,"account":{"id":332,"name":"Baltimore-Washington","parent_account_id":1,"parent_account_name":"Clear Channel"},"classificationType":{"id":1,"name":"Roadside","description":"Stationary outdoor inventory where audience move by those locations on a trip to a destination. Roadside audiences are persons within moving vehicles on roadways or persons traveling on pedestrian wal"},"constructionType":{"id":1,"name":"Freestanding","description":"freestanding structure taller than 10 feet tall"},"illuminationType":{"id":1,"name":"Sunlit Ambient","description":"Surface illuminated by ambient natural sunlight"},"mediaStatus":{"id":51,"name":"Published - Measured","description":"Measures created; inventory and measures available to licensed users"},"mediaType":{"id":3,"os_inventoryType_id":"9f9b97cb-7e68-112c-b931-0a5bb4fb9ba7","name":"Poster","description":"large-sized products (approx. 10-12' H x 22-25' W)"},"place":{"id":null,"name":null,"short_name":null,"street_address":null,"city":null,"state":null,"zip_code":null,"updated_desc":null,"open_date":null},"placeType":{"id":null,"os_inventoryType_id":null,"name":null,"description":null},"representationType":{"id":1,"name":"Own","description":"the owner or leaseholder of an asset who may also manage that asset"},"location":{"id":36734,"orientation":90,"place_id":null,"primary_read":"L","primary_artery":"Wilkens Ave","level":null,"levels_visible":null,"latitude":39.275163,"longitude":-76.666822,"block_id":"245102502061013","elevation":null,"geometry":{"type":"Point","coordinates":[-76.666822,39.275163]},"place_type_id":null,"created_dtm":"2005-03-09T00:00:00.000Z","updated_dtm":"2009-12-15T07:10:00.000Z","dma_id":512,"dma_name":"Baltimore, MD","cbsa_code":12580,"cbsa_name":"Baltimore-Columbia-Towson, MD Metro Area","county_id":24510,"county_name":"Baltimore city","zip_code":"21223","zip_code_name":"21223 - Baltimore, MD","state":"MD","time_zone":"-5"},"spot":{"spot_id":30478,"plant_spot_id":"067150","frame_uri":"{{api.basepath}}/v2.1/inventory/30478","length":null,"spot_rotating":0,"spot_full_motion":0,"spot_partial_motion":0,"spot_audio":0,"spot_interactive":0,"layout_share_of_voice":1,"spot_share_of_voice":1,"created_dtm":"2005-09-03T00:00:00.000Z","updated_dtm":"2009-12-15T07:10:00.000Z","measures_time_calculated":"2021-06-09T18:41:50.091Z"},"measure":{"type":"Measures","period_days":7,"base_segment":"2032","target_segment":"2032","target_geo":"Defaulted to GLOBAL","market":"Defaulted to GLOBAL","index_comp_target":100,"pct_comp_pop_target_inmkt":1,"pct_comp_imp_target":1,"pct_comp_imp_target_inmkt":1,"freq_avg":1.8544009923934939,"imp_target_inmkt":50665.796875000015,"imp_target":50665.796875000015,"imp_inmkt":50665.796875000015,"imp":50665.796875000015,"pct_imp_inmkt":1,"pct_imp_target_inmkt":1,"pop_inmkt":330946048.00000006,"pop_target_inmkt":330946048.00000006,"reach_pct":0.008255702443420887,"reach_net":27321.999999999996,"trp":0.015309382230043413,"eff_freq_min":3,"eff_freq_avg":10.916614532470703,"eff_reach_net":4641.000000000001,"eff_reach_pct":0.0014023928670212626,"product_name":"2021r1","measures_release":"2021r1","list":null,"total_msg_impressions":null,"total_msg_impressions_list":null}},"dma":null,"partner":{"id":"081a5d77-b1c9-41d1-82f2-3debb8e97ac6","tier":"toreview","slug":"clear-channel-baltimore-washington","name":"Clear Channel - Baltimore-Washington"},"storefrontsGEOJson":{"points":[{"type":"Feature","geometry":{"type":"Point","coordinates":[-76.666822,39.275163]},"properties":{"id":"00054298-50c1-474f-a094-c1976ca56b47","name":"Posters","description":"Roadside Sunlit Ambient Poster","address":"Wilkens Ave","image":{"key":"photo_30478_0.jpeg","url":"https://d3pw1a12ddvjwa.cloudfront.net/img/photo_30478_0.jpeg","name":"30478.jpg","size":1,"type":"image/jpeg","handle":"1","source":"local_file_system","status":"Stored","uploadId":"1"},"inventoryType":[{"id":"9f9b97cb-7e68-112c-b931-0a5bb4fb9ba7","name":"Poster"}]}}],"center":[-76.666822,39.275163]},"storefrontPartner":{"logo":"https://cdn.filestackcontent.com/6i5TMEBRRC7qIfAGeYL0","description":null,"tier":"toreview","slug":"clear-channel-baltimore-washington","url":"/directory/company/clear-channel-baltimore-washington"}};
+
+        name = resp.name + " - " + resp.physicalAddress;
+        img = resp.mediaFiles[0]['url'];
+        impressions = resp.weeklyAdultImpressionsCount;
+        price = impressions / 100000;
+        price = price.toFixed(2);
+        $('#bname').val(name);
+        $('#bimg').attr('src', img);
+        $('#bimp').val(impressions);
+        $('#bprice').val(price);
+
+        $('#step2').removeClass('visually-hidden');
+        $('#step3').removeClass('visually-hidden');
+        $('#step2prompt').addClass('visually-hidden');
+
+        /*
+        */
+        return false;
+
+        // code once app whitelisted
+        billboardId = $('#inputBillboardId').val();
+        var url = "https://api.onescreen.ai/storefront/"+billboardId;
+        $.getJSON( url, function( resp ) {
+          name = resp.name + " - " + resp.physicalAddress;
+          imp = resp.mediaFiles[0]['url'];
+          impressions = resp.weeklyAdultImpressionsCount;
+        });
+      }
+
+      function step2Check() {
+        if (hasAle) {
+          provider = window["aleereum"]
+          if (!provider.isConnected) {
+            alert("Unlock Ale Wallet first!")
+          }
+          if (provider.islocked) {
+            alert("Unlock Ale Wallet first!")
+          }
+        } else {
+          alert("Install Ale Wallet first!")
+        }
+      }
+
+      function step3Check() {
+        console.log("provider.account: ", provider.account)
+      }
+    </script>
+  </head>
+  <body>
+    
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+  <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
+      <span class="fs-4">Billboard NFTs</span>
+    </a>
+  </header>
+
+  <main>
+    <h1>Generate Billboard NFTs</h1>
+    <p class="fs-12 col-md-12">Step 1. Lookup billboard details by ID to understand relative populatiry details, which drive price.</p>
+    <form class="row g-12" onSubmit="step1(); return false;">
+      <div class="mb-3 row">
+        <label for="inputBillboardId" class="col-sm-4 visually-hidden">Billboard ID</label>
+        <input type="text" class="col-sm-8 form-control" id="inputBillboardId" placeholder="Billboard ID" value="00054298-50c1-474f-a094-c1976ca56b47">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Look up billboard details</button>
+      </div>
+    </form>
+
+    <div class="mb-5">
+
+    </div>
+
+    <hr class="col-3 col-md-2 mb-5">
+
+    <div class="row g-5">
+      <div class="col-md-6">
+        <h2>Billboard Details</h2>
+        <p id="step2prompt">Search for billboard first in step 1</p>
+        <form id="step2" class="row g-12 visually-hidden" onSubmit="step1();">
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-4 col-form-label">Name</label>
+            <div class="col-sm-8">
+              <input type="text" readonly class="form-control-plaintext" id="bname" value="TBD">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-4 col-form-label">Image</label>
+            <div class="col-sm-8">
+              <img src=" " id="bimg" style="width:134px; height: 140px;" />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-4 col-form-label">Impressions</label>
+            <div class="col-sm-8">
+              <input type="text" readonly class="form-control-plaintext" id="bimp" value="TBD">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-4 col-form-label">Price Estimate</label>
+            <div class="col-sm-8">
+              <input type="text" readonly class="form-control-plaintext" id="bprice" value="TBD"> CCN<br/>
+              (Price 1 CCN = 100,000 Impressions)
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-6 visually-hidden" id="step3">
+        <h2>Mint NFT</h2>
+        <p>You can now buy this NFT of this billboard for <span id="bprice" /> CCNs</p>
+
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3" onclick="step2Check();">Unlock Wallet</button>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3" onclick="step3Check();">Buy NFT</button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <footer class="pt-5 my-5 text-muted border-top">
+    Andrei Oprisan &copy; 2022
+  </footer>
+</div>
+  </body>
+</html>
