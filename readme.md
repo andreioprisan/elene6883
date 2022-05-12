@@ -1,6 +1,8 @@
 # NFTs Enablement of Physical Advertising Commerce
 
-This is the final project for ELENE 6883 Columbia University final project by Andrei Oprisan (ao2775).
+This is the final project for Columbia University final project ELENE 6883 Blockchain class by Andrei Oprisan (ao2775).
+![Screenshot](./screenshot.png)
+
 
 The code structure is as follows:
 ```
